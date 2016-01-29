@@ -8,8 +8,10 @@ import java.io.InputStreamReader;
 
 public class DataInput {
     public static int enteredInputDataInt() throws IOException {
+        NoCloseInputStream noCloseStream = new NoCloseInputStream(System.in);
+        InputStreamReader inStreamReader = new InputStreamReader(noCloseStream);
         System.out.println("Please, enter an Integer number!");
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new NoCloseInputStream(System.in)))) {
+        try (BufferedReader reader = new BufferedReader(inStreamReader)) {
             int result = Integer.valueOf(reader.readLine());
             return result;
         }
@@ -17,8 +19,10 @@ public class DataInput {
 
 
     public static int enteredInputDataBinary() throws IOException {
+        NoCloseInputStream noCloseStream = new NoCloseInputStream(System.in);
+        InputStreamReader inStreamReader = new InputStreamReader(noCloseStream);
         System.out.println("Please, enter a Binary  number!");
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new NoCloseInputStream(System.in)))) {
+        try (BufferedReader reader = new BufferedReader(inStreamReader)) {
             int result = Integer.valueOf(reader.readLine());
             return result;
         }

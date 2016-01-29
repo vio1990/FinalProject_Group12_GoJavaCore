@@ -17,8 +17,10 @@ public class DataOutput {
     }
 
     public static int asking() throws IOException {
+        NoCloseInputStream noCloseStream = new NoCloseInputStream(System.in);
+        InputStreamReader inStreamReader = new InputStreamReader(noCloseStream);
         System.out.println("Would you like to start program again?(\"1\" - Yes: \"2\" - No)");
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new NoCloseInputStream(System.in)))) {
+        try (BufferedReader reader = new BufferedReader(inStreamReader)) {
             int result = Integer.valueOf(reader.readLine());
             return result;
         }

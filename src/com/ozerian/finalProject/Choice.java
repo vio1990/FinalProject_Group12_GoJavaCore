@@ -12,9 +12,11 @@ public class Choice {
     }
 
     public static String enteredChoice() throws IOException {
+        NoCloseInputStream noCloseStream = new NoCloseInputStream(System.in);
+        InputStreamReader inStreamReader = new InputStreamReader(noCloseStream);
         System.out.println("If you want to convert \"int to binary\", please, enter \"1\"");
         System.out.println("If you want to convert \"binary to int\", please, enter \"2\"");
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new NoCloseInputStream(System.in)))) {
+        try (BufferedReader reader = new BufferedReader(inStreamReader)) {
             String result = reader.readLine();
             return result;
         }
