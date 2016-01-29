@@ -1,9 +1,10 @@
 package com.ozerian.finalProject;
 
+import com.sun.xml.internal.ws.util.NoCloseInputStream;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 public class DataOutput {
 
@@ -17,8 +18,9 @@ public class DataOutput {
 
     public static int asking() throws IOException {
         System.out.println("Would you like to start program again?(\"1\" - Yes: \"2\" - No)");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int result = Integer.valueOf(reader.readLine());
-        return result;
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new NoCloseInputStream(System.in)))) {
+            int result = Integer.valueOf(reader.readLine());
+            return result;
+        }
     }
 }

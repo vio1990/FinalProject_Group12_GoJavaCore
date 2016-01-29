@@ -1,9 +1,10 @@
 package com.ozerian.finalProject;
 
+import com.sun.xml.internal.ws.util.NoCloseInputStream;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 public class Choice {
     public static void greeting() {
@@ -13,10 +14,11 @@ public class Choice {
     public static String enteredChoice() throws IOException {
         System.out.println("If you want to convert \"int to binary\", please, enter \"1\"");
         System.out.println("If you want to convert \"binary to int\", please, enter \"2\"");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String result = reader.readLine();
-        return result;
-
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new NoCloseInputStream(System.in)))) {
+            String result = reader.readLine();
+            reader.close();
+            return result;
+        }
     }
 }
 
