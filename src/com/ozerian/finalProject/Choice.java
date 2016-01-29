@@ -16,7 +16,6 @@ public class Choice {
         System.out.println("If you want to convert \"binary to int\", please, enter \"2\"");
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new NoCloseInputStream(System.in)))) {
             String result = reader.readLine();
-            reader.close();
             return result;
         }
     }
