@@ -1,4 +1,10 @@
 *.class
+*.xml
+*.name
+*.iml
+
+#IDEA Files
+.idea/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
