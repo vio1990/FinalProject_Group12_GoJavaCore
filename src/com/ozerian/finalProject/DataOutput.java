@@ -22,7 +22,12 @@ public class DataOutput {
         System.out.println("Would you like to start program again?(\"1\" - Yes: \"2\" - No)");
         try (BufferedReader reader = new BufferedReader(inStreamReader)) {
             int result = Integer.valueOf(reader.readLine());
-            return result;
+            if (result == 1 || result == 2) {
+                return result;
+            } else {
+                System.out.println("Please, enter \"1\" or \"2\"");
+                return DataOutput.asking();
+            }
         }
     }
 }
