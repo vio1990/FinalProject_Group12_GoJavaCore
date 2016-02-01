@@ -6,9 +6,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         try {
             int continues = 0;
-            Choice.greeting();
+            DataOutput.greeting();
             do {
-                String choice = Choice.enteredChoice();
+                String choice = DataInput.enteredChoice();
 
                 switch (choice) {
                     case "1":

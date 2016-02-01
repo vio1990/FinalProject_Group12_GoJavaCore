@@ -8,6 +8,25 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class DataInput {
+
+    public static String enteredChoice() throws IOException {
+        NoCloseInputStream noCloseStream = new NoCloseInputStream(System.in);
+        InputStreamReader inStreamReader = new InputStreamReader(noCloseStream);
+        System.out.println("If you want to convert \"int to binary\", please, enter \"1\"");
+        System.out.println("If you want to convert \"binary to int\", please, enter \"2\"");
+        System.out.println("If you want to exit, please, enter \"3\"");
+
+        try (BufferedReader reader = new BufferedReader(inStreamReader)) {
+            String result = reader.readLine();
+            if (result.equalsIgnoreCase("1") || result.equalsIgnoreCase("2") || result.equalsIgnoreCase("3")) {
+                return result;
+            } else {
+                System.out.println("Please, enter \"1\", \"2\" or \"3\"");
+                return DataInput.enteredChoice();
+            }
+        }
+    }
+
     public static int enteredInputDataInt() throws IOException {
         NoCloseInputStream noCloseStream = new NoCloseInputStream(System.in);
         InputStreamReader inStreamReader = new InputStreamReader(noCloseStream);

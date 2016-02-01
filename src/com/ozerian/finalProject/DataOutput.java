@@ -8,6 +8,10 @@ import java.io.InputStreamReader;
 
 public class DataOutput {
 
+    public static void greeting() {
+        System.out.println("Hi, user! I'm very glad you decided to use our mini-program!");
+    }
+
     public static void printResult(String result) {
         System.out.println("Your result is:" + result);
     }
