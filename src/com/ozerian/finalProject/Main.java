@@ -5,9 +5,10 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
         try {
-            int continues = 0;
+            String continues = null;
             DataOutput.greeting();
             do {
+
                 String choice = DataInput.enteredChoice();
 
                 switch (choice) {
@@ -27,13 +28,14 @@ public class Main {
                         break;
                     case "3":
                         DataOutput.printThanks();
-                        continues = 2;
+                        continues = "2";
                         break;
                 }
-            } while (continues != 2);
+            } while (!continues.equalsIgnoreCase("2"));
 
         } catch (IOException ex) {
-            ex.printStackTrace();
+            System.out.println("Wrong input data!");
         }
     }
 }
+

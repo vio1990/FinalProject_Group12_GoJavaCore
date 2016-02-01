@@ -13,20 +13,20 @@ public class DataOutput {
     }
 
     public static void printResult(String result) {
-        System.out.println("Your result is:" + result);
+        System.out.println("Your result is: " + result);
     }
 
     public static void printThanks() {
         System.out.println("Thank you! Good bye!");
     }
 
-    public static int asking() throws IOException {
+    public static String asking() throws IOException {
         NoCloseInputStream noCloseStream = new NoCloseInputStream(System.in);
         InputStreamReader inStreamReader = new InputStreamReader(noCloseStream);
         System.out.println("Would you like to start program again?(\"1\" - Yes: \"2\" - No)");
         try (BufferedReader reader = new BufferedReader(inStreamReader)) {
-            int result = Integer.valueOf(reader.readLine());
-            if (result == 1 || result == 2) {
+            String result = reader.readLine();
+            if (result.equalsIgnoreCase("1") || result.equalsIgnoreCase("2")) {
                 return result;
             } else {
                 System.out.println("Please, enter \"1\" or \"2\"");

@@ -12,7 +12,7 @@ public class ConverterTest {
 
     @Test
     public void testToBinary() throws Exception {
-        integer=127;
+        integer=-37;
         String expectedValue = Integer.toBinaryString(integer);
         char[] expectedChars = expectedValue.toCharArray();
         String actualValue = Converter.toBinary(integer);
@@ -20,9 +20,10 @@ public class ConverterTest {
         assertArrayEquals(expectedChars, actualChars);
     }
 
+
     @Test
     public void testToInteger() throws Exception {
-        binary = "111010101";
+        binary = "011011111010111011111";
         int result = Integer.parseInt(binary, 2);
         String expectedValue = String.valueOf(result);
         char[] expectedChars = expectedValue.toCharArray();

@@ -1,9 +1,9 @@
 package com.ozerian.finalProject.exceptions;
 
-public class OnlyOneZeroException extends Exception {
+public class OnlyOneAndZeroValuesException extends Exception {
     private int value;
 
-    public OnlyOneZeroException(int value) {
+    public OnlyOneAndZeroValuesException(int value) {
         this.value = value;
     }
 

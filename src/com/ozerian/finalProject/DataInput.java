@@ -1,6 +1,7 @@
 package com.ozerian.finalProject;
 
-import com.ozerian.finalProject.exceptions.OnlyOneZeroException;
+import com.ozerian.finalProject.exceptions.OnlyOneAndZeroValuesException;
+import com.ozerian.finalProject.exceptions.OutOfBoundsMaxBitsException;
 import com.sun.xml.internal.ws.util.NoCloseInputStream;
 
 import java.io.BufferedReader;
@@ -8,6 +9,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class DataInput {
+
+    public static final int MAX_BITS_QUANTITY_FOR_INTEGER = 32;
+    public static final String SPECIAL_CASE_1 = "11111111111111111111111111111111";    // more than "Max Integer value"
+    public static final String SPECIAL_CASE_2 = "11111111111111111111111111111110";    // more than "Max Integer value"
 
     public static String enteredChoice() throws IOException {
         NoCloseInputStream noCloseStream = new NoCloseInputStream(System.in);
@@ -35,8 +40,9 @@ public class DataInput {
             int result = Integer.valueOf(reader.readLine());
             return result;
         } catch (NumberFormatException ex) {
-            ex.printStackTrace();
-            System.out.println("Input data should be only an integer number and less than " + Integer.MAX_VALUE);
+            System.out.println("Input data should be only an integer number: ");
+            System.out.println("more than " + Integer.MIN_VALUE);
+            System.out.println("less than " + Integer.MAX_VALUE);
             return enteredInputDataInt();
         }
     }
@@ -48,16 +54,23 @@ public class DataInput {
         System.out.println("Please, enter a Binary  number!");
         try (BufferedReader reader = new BufferedReader(inStreamReader)) {
             String result = reader.readLine();
+            if (result.length() > MAX_BITS_QUANTITY_FOR_INTEGER) {
+                throw new OutOfBoundsMaxBitsException(result);
+            } else if (result.equalsIgnoreCase(SPECIAL_CASE_1) || result.equalsIgnoreCase(SPECIAL_CASE_2)) {
+                throw new OutOfBoundsMaxBitsException(result);
+            }
             char[] binNumbers = result.toCharArray();
             for (char binNumber : binNumbers) {
                 if ((binNumber != '1' && binNumber != '0')) {
-                    throw new OnlyOneZeroException(binNumber);
+                    throw new OnlyOneAndZeroValuesException(binNumber);
                 }
             }
             return result;
-        } catch (OnlyOneZeroException e) {
-            e.printStackTrace();
+        } catch (OnlyOneAndZeroValuesException e) {
             System.out.println("Wrong inputData! It should include only \"1\" or \"0\"");
+            return enteredInputDataBinary();
+        } catch (OutOfBoundsMaxBitsException ex) {
+            System.out.println("Out of the maximum bit's value for Integer number");
             return enteredInputDataBinary();
         }
     }
