@@ -2,7 +2,6 @@ package com.ozerian.finalProject;
 
 public class Converter {
 
-    public static final int MAX_BIT_SIZE = 32;
 
     public static String toBinary(int intNumber) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -26,7 +25,7 @@ public class Converter {
                 intNumber = intNumber / 2;
                 returnCode = stringBuilder.toString();
             }
-            for (int i = 0; i < MAX_BIT_SIZE - returnCode.length(); i++) {
+            for (int i = 0; i < DataInput.MAX_BITS_QUANTITY_FOR_INTEGER - returnCode.length(); i++) {
                 stringBuilder.append(1);                // change other bits with "0" value on the opposite value - "1"
             }
             stringBuilder.replace(0, 1, "1"); // add "1" to the returnCode
