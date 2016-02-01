@@ -54,16 +54,15 @@ public class Converter {
         return stringBuilder.toString();
     }*/
 
-    public static String toInteger(String binaryNumber){
+    public static String toInteger(String binaryNumber) {
         String reverseBinaryNumber = new StringBuilder(binaryNumber).reverse().toString();
         int result = 0;
-        for(int i = binaryNumber.length() - 1; i >= 0 ; i--){
+        for (int i = binaryNumber.length() - 1; i >= 0; i--) {
 
-            result += (1 << i ) * (reverseBinaryNumber.charAt(i) == '1' ? 1 : 0);
+            result += (1 << i) * (reverseBinaryNumber.charAt(i) == '1' ? 1 : 0);
         }
         return String.valueOf(result);
     }
-
 }
 
 
