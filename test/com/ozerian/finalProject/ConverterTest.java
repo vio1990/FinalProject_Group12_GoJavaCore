@@ -22,7 +22,7 @@ public class ConverterTest {
 
     @Test
     public void testToInteger() throws Exception {
-        binary = "11101011";
+        binary = "111010101";
         int result = Integer.parseInt(binary, 2);
         String expectedValue = String.valueOf(result);
         char[] expectedChars = expectedValue.toCharArray();
