@@ -1,9 +1,8 @@
 package com.goit.gojava.group12.project.program;
 
-import com.goit.gojava.group12.project.program.ConverterUtils;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 public class ConverterUtilsTest {
     private int integer;
@@ -11,7 +10,7 @@ public class ConverterUtilsTest {
 
     @Test
     public void testToBinary() throws Exception {
-        integer=-1579;
+        integer=-1571;
         String expectedValue = Integer.toBinaryString(integer);
         char[] expectedChars = expectedValue.toCharArray();
         String actualValue = ConverterUtils.toBinary(integer);
