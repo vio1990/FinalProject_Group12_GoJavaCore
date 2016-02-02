@@ -29,6 +29,7 @@ public class Main {
                     case "3":
                         DataOutput.printThanks();
                         continues = "2";
+                        System.out.println(Converter.toBinary(-44));
                         break;
                 }
             } while (!continues.equalsIgnoreCase("2"));

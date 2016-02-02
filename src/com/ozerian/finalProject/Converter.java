@@ -5,64 +5,64 @@ public class Converter {
 
     public static String toBinary(int intNumber) {
         StringBuilder stringBuilder = new StringBuilder();
-        int modulo = 0;
-        String returnCode = null;
+        int modulus;
+        int returnCodeSize = 0;
+        String returnCode;
 
-        if (intNumber > 0) {
+
+        if (intNumber > 0) {                                    // for positive Integer numbers
             while (intNumber != 0) {
-                modulo = intNumber % 2;
-                stringBuilder.append(modulo);
+                modulus = intNumber % 2;
+                stringBuilder.append(modulus);
                 intNumber = intNumber / 2;
             }
-
-        } else if (intNumber == 0) {
+            stringBuilder.reverse();
+        } else if (intNumber == 0) {                            // for "0" Integer's value
             stringBuilder.append(0);
 
-        } else {                                        // two's complement
+        } else {                                                // for negative Integer numbers ("two's complement")
             while (intNumber != 0) {
-                modulo = (intNumber % 2) == 0 ? 1 : 0;  // change a bit the opposite
-                stringBuilder.append(modulo);
+                modulus = (intNumber % 2) == 0 ? 1 : 0;          // inverting all digits of the same positive Integer value
+                stringBuilder.append(modulus);
                 intNumber = intNumber / 2;
                 returnCode = stringBuilder.toString();
+                returnCodeSize = returnCode.length();
             }
-            for (int i = 0; i < DataInput.MAX_BITS_QUANTITY_FOR_INTEGER - returnCode.length(); i++) {
-                stringBuilder.append(1);                // change other bits with "0" value on the opposite value - "1"
+            stringBuilder.reverse();                            // reversing the bits
+
+            for (int i = returnCodeSize - 1; i >= 0; i--) {     // Add "1" to the reversed bits
+                if (stringBuilder.charAt(i) != '0') {
+                    stringBuilder.setCharAt(i, '0');
+                } else {
+                    stringBuilder.setCharAt(i, '1');
+                    break;
+                }
             }
-            stringBuilder.replace(0, 1, "1"); // add "1" to the returnCode
+
+            String finalReturnCode = stringBuilder.toString();
+            stringBuilder.setLength(0);                         // rebooting our stringBuilder
+
+            for (int i = 0; i < DataInput.MAX_BITS_QUANTITY_FOR_INTEGER - finalReturnCode.length(); i++) {
+                stringBuilder.append(1);                        // add negative indicating bits with digit - "1"
+            }
+            stringBuilder.append(finalReturnCode);              // add finalReturnCode bits
         }
 
-        stringBuilder.reverse();
         return stringBuilder.toString();
     }
 
 
-    /*public static String toInteger(String binNumber) {
-        StringBuilder stringBuilder = new StringBuilder(binNumber);
-        stringBuilder.reverse();
-        char[] numbers = stringBuilder.toString().toCharArray();
-        int[] num = new int[numbers.length];
-        for (int i = 0; i < numbers.length; i++) {
-            num[i] = Character.getNumericValue(numbers[i]);
-            num[i] = (int) (Math.pow(2, i) * num[i]);
-        }
-        int result = 0;
-        for (int i = 0; i < num.length; i++) {
-            result = result + num[i];
-        }
-        stringBuilder.delete(0, stringBuilder.length());
-        stringBuilder.append(result);
-        return stringBuilder.toString();
-    }*/
+    public static String toInteger(String binNumber) {
+        StringBuilder stringBuilder = new StringBuilder(binNumber).reverse();
 
-    public static String toInteger(String binaryNumber) {
-        String reverseBinaryNumber = new StringBuilder(binaryNumber).reverse().toString();
         int result = 0;
-        for (int i = binaryNumber.length() - 1; i >= 0; i--) {
+        for (int i = binNumber.length() - 1; i >= 0; i--) {
 
-            result += (1 << i) * (reverseBinaryNumber.charAt(i) == '1' ? 1 : 0);
+            result += (1 << i) * (stringBuilder.charAt(i) == '1' ? 1 : 0); // involuting and summarizing corresponding bits
         }
         return String.valueOf(result);
     }
+
 }
 
 
