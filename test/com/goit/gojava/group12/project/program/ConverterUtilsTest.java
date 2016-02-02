@@ -10,7 +10,7 @@ public class ConverterUtilsTest {
 
     @Test
     public void testToBinary() throws Exception {
-        integer=-1571;
+        integer = -1571;
         String expectedValue = Integer.toBinaryString(integer);
         char[] expectedChars = expectedValue.toCharArray();
         String actualValue = ConverterUtils.toBinary(integer);

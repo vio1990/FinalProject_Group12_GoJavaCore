@@ -1,7 +1,7 @@
 package com.goit.gojava.group12.project.program;
 
-import com.goit.gojava.group12.project.exceptions.NoEnteredData;
-import com.goit.gojava.group12.project.exceptions.NotBinValueException;
+import com.goit.gojava.group12.project.exceptions.NoEnteredDataException;
+import com.goit.gojava.group12.project.exceptions.WrongDataException;
 import com.goit.gojava.group12.project.exceptions.OutOfBitsQuantityException;
 import com.sun.xml.internal.ws.util.NoCloseInputStream;
 
@@ -27,9 +27,11 @@ public class DataInput {
             if (result.equalsIgnoreCase("1") || result.equalsIgnoreCase("2") || result.equalsIgnoreCase("3")) {
                 return result;
             } else {
-                System.out.println("Please, enter \"1\", \"2\" or \"3\"");
-                return DataInput.enteredChoice();
+                throw new WrongDataException(result);
             }
+        } catch (WrongDataException ex) {
+            System.out.println("Please, enter \"1\", \"2\" or \"3\"");
+            return DataInput.enteredChoice();
         }
     }
 
@@ -40,11 +42,11 @@ public class DataInput {
         try (BufferedReader reader = new BufferedReader(inStreamReader)) {
             String inputNumber = reader.readLine().trim();
             if (inputNumber.equalsIgnoreCase("")) {
-                throw new NoEnteredData();
+                throw new NoEnteredDataException();
             }
             int result = Integer.valueOf(inputNumber);
             return result;
-        } catch (NoEnteredData ex) {
+        } catch (NoEnteredDataException ex) {
             System.out.println("You've entered nothing! Please enter the decimal integer!");
             return enteredInputDataDecInt();
         } catch (NumberFormatException ex) {
@@ -67,19 +69,19 @@ public class DataInput {
             } else if (result.equalsIgnoreCase(SPECIAL_CASE_1) || result.equalsIgnoreCase(SPECIAL_CASE_2)) {
                 throw new OutOfBitsQuantityException(result);
             } else if (result.equalsIgnoreCase("")) {
-                throw new NoEnteredData();
+                throw new NoEnteredDataException();
             }
             char[] binNumbers = result.toCharArray();
             for (char binNumber : binNumbers) {
                 if ((binNumber != '1' && binNumber != '0')) {
-                    throw new NotBinValueException(binNumber);
+                    throw new WrongDataException(binNumber);
                 }
             }
             return result;
-        } catch (NoEnteredData ex) {
+        } catch (NoEnteredDataException ex) {
             System.out.println("You've entered nothing! Please enter the binary number");
             return enteredInputDataBinary();
-        } catch (NotBinValueException e) {
+        } catch (WrongDataException e) {
             System.out.println("Wrong input data! It should include only \"1\" or \"0\", without spaces");
             return enteredInputDataBinary();
         } catch (OutOfBitsQuantityException ex) {

@@ -1,5 +1,5 @@
 package com.goit.gojava.group12.project.exceptions;
 
-public class NoEnteredData extends Exception {
+public class NoEnteredDataException extends Exception {
 
 }
