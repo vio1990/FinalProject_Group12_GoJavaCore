@@ -1,6 +1,6 @@
-package com.ozerian.finalProject;
+package com.goit.gojava.group12.project.program;
 
-public class Converter {
+public class ConverterUtils {
 
 
     public static String toBinary(int intNumber) {
@@ -8,7 +8,6 @@ public class Converter {
         int modulus;
         int returnCodeSize = 0;
         String returnCode;
-
 
         if (intNumber > 0) {                                    // for positive Integer numbers
             while (intNumber != 0) {

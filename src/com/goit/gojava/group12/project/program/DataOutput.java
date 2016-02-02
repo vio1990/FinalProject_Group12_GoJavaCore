@@ -1,4 +1,4 @@
-package com.ozerian.finalProject;
+package com.goit.gojava.group12.project.program;
 
 import com.sun.xml.internal.ws.util.NoCloseInputStream;
 
@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 public class DataOutput {
 
     public static void greeting() {
-        System.out.println("Hi, user! I'm very glad you decided to use our mini-program!");
+        System.out.println("Hi, user! I'm very glad you've decided to use our converting program!");
     }
 
     public static void printResult(String result) {
@@ -23,7 +23,7 @@ public class DataOutput {
     public static String asking() throws IOException {
         NoCloseInputStream noCloseStream = new NoCloseInputStream(System.in);
         InputStreamReader inStreamReader = new InputStreamReader(noCloseStream);
-        System.out.println("Would you like to start program again?(\"1\" - Yes: \"2\" - No)");
+        System.out.println("Would you like to launch the converter again?(\"1\" - Yes: \"2\" - No)");
         try (BufferedReader reader = new BufferedReader(inStreamReader)) {
             String result = reader.readLine();
             if (result.equalsIgnoreCase("1") || result.equalsIgnoreCase("2")) {

@@ -1,12 +1,11 @@
-package com.ozerian.finalProject;
+package com.goit.gojava.group12.project.program;
 
+import com.goit.gojava.group12.project.program.ConverterUtils;
 import org.junit.Test;
-
-import java.util.function.IntBinaryOperator;
 
 import static org.junit.Assert.*;
 
-public class ConverterTest {
+public class ConverterUtilsTest {
     private int integer;
     private String binary;
 
@@ -15,7 +14,7 @@ public class ConverterTest {
         integer=-1579;
         String expectedValue = Integer.toBinaryString(integer);
         char[] expectedChars = expectedValue.toCharArray();
-        String actualValue = Converter.toBinary(integer);
+        String actualValue = ConverterUtils.toBinary(integer);
         char[] actualChars = actualValue.toCharArray();
         assertArrayEquals(expectedChars, actualChars);
     }
@@ -27,7 +26,7 @@ public class ConverterTest {
         int result = Integer.parseInt(binary, 2);
         String expectedValue = String.valueOf(result);
         char[] expectedChars = expectedValue.toCharArray();
-        String actualValue = Converter.toInteger(binary);
+        String actualValue = ConverterUtils.toInteger(binary);
         char[] actualChars = actualValue.toCharArray();
         assertArrayEquals(expectedChars, actualChars);
 

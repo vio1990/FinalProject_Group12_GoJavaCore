@@ -1,8 +1,12 @@
-package com.ozerian.finalProject;
+package com.goit.gojava.group12.project;
+
+import com.goit.gojava.group12.project.program.ConverterUtils;
+import com.goit.gojava.group12.project.program.DataInput;
+import com.goit.gojava.group12.project.program.DataOutput;
 
 import java.io.IOException;
 
-public class Main {
+public class ConverterCLI {
     public static void main(String[] args) throws IOException {
         try {
             String continues = null;
@@ -13,26 +17,24 @@ public class Main {
 
                 switch (choice) {
                     case "1":
-                        int intNumber = DataInput.enteredInputDataInt();
-                        String binNumber = Converter.toBinary(intNumber);
+                        int intNumber = DataInput.enteredInputDataDecInt();
+                        String binNumber = ConverterUtils.toBinary(intNumber);
                         DataOutput.printResult(binNumber);
-                        DataOutput.printThanks();
                         continues = DataOutput.asking();
                         break;
                     case "2":
                         String binaryNumber = DataInput.enteredInputDataBinary();
-                        String integerNumber = Converter.toInteger(binaryNumber);
+                        String integerNumber = ConverterUtils.toInteger(binaryNumber);
                         DataOutput.printResult(integerNumber);
-                        DataOutput.printThanks();
                         continues = DataOutput.asking();
                         break;
                     case "3":
-                        DataOutput.printThanks();
                         continues = "2";
-                        System.out.println(Converter.toBinary(-44));
                         break;
                 }
             } while (!continues.equalsIgnoreCase("2"));
+
+            DataOutput.printThanks();
 
         } catch (IOException ex) {
             System.out.println("Wrong input data!");
