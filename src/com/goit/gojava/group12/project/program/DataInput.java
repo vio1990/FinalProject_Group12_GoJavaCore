@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 
 public class DataInput {
 
-    public static final int MAX_BITS_QUANTITY_FOR_INTEGER = 32;
     public static final String SPECIAL_CASE_1 = "11111111111111111111111111111111";    // more than "Max Integer value"
     public static final String SPECIAL_CASE_2 = "11111111111111111111111111111110";    // more than "Max Integer value"
 
@@ -64,7 +63,7 @@ public class DataInput {
         System.out.println("Please, enter a binary  number!");
         try (BufferedReader reader = new BufferedReader(inStreamReader)) {
             String result = reader.readLine().trim();
-            if (result.length() > MAX_BITS_QUANTITY_FOR_INTEGER) {
+            if (result.length() > Integer.SIZE) {
                 throw new OutOfBitsQuantityException(result);
             } else if (result.equalsIgnoreCase(SPECIAL_CASE_1) || result.equalsIgnoreCase(SPECIAL_CASE_2)) {
                 throw new OutOfBitsQuantityException(result);
