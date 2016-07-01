@@ -9,11 +9,21 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * This class is for handling any different input data from the user.
+ */
 public class DataInput {
 
     public static final String SPECIAL_CASE_1 = "11111111111111111111111111111111";    // more than "Max Integer value"
     public static final String SPECIAL_CASE_2 = "11111111111111111111111111111110";    // more than "Max Integer value"
 
+    /**
+     * This method is for input data handling and choice the appropriate
+     * application's action according user's choice.
+     *
+     * @return String the choice of the user.
+     * @throws IOException
+     */
     public static String enteredChoice() throws IOException {
         NoCloseInputStream noCloseStream = new NoCloseInputStream(System.in);
         InputStreamReader inStreamReader = new InputStreamReader(noCloseStream);
@@ -34,6 +44,13 @@ public class DataInput {
         }
     }
 
+    /**
+     * This method is for handling user's input data in the case of the
+     * decimal to binary conversion.
+     *
+     * @return int converted input data value to Integer data type.
+     * @throws IOException
+     */
     public static int enteredInputDataDecInt() throws IOException {
         NoCloseInputStream noCloseStream = new NoCloseInputStream(System.in);
         InputStreamReader inStreamReader = new InputStreamReader(noCloseStream);
@@ -56,7 +73,13 @@ public class DataInput {
         }
     }
 
-
+    /**
+     * This method is for handling user's input data in the case of the
+     * binary to decimal conversion.
+     *
+     * @return String representation of the binary result number..
+     * @throws IOException
+     */
     public static String enteredInputDataBinary() throws IOException {
         NoCloseInputStream noCloseStream = new NoCloseInputStream(System.in);
         InputStreamReader inStreamReader = new InputStreamReader(noCloseStream);

@@ -6,6 +6,12 @@ import com.goit.gojava.group12.project.program.DataOutput;
 
 import java.io.IOException;
 
+/**
+ * The class is for the application's bootstrap. After the launch, application greetings with
+ * us and proposes to make a choice, according user's demand. After an input of the choice application
+ * convert the number to decimal or binary representation. In the cases of wrong input data there are
+ * exceptions handling with information messages.
+ */
 public class ConverterCLI {
     public static void main(String[] args) throws IOException {
         try {
